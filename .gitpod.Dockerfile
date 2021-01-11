@@ -1,4 +1,8 @@
-FROM python:3.7
-RUN apt update -y && apt upgrade -y
-RUN sudo apt install haskell-stack
-RUN stack upgrade --binary-only
+FROM crosscompass/ihaskell-notebook:62631e7176e8
+USER root
+RUN pip install nbgitpuller
+
+USER $NB_UID
+
+
+ENV JUPYTER_ENABLE_LAB=yes
