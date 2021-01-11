@@ -9,4 +9,10 @@ RUN git clone https://github.com/haskell/haskell-ide-engine --recurse-submodules
     && stack install haskell-ide-engine \
     && cd .. \
     && rm -rf haskell-ide-engine
-ENV PATH=/home/gitpod/.local/bin:$PATH
+RUN git clone https://github.com/gibiansky/IHaskell \
+    && cd IHaskell \
+    && pip3 install -r requirements.txt
+RUN ihaskell install --stack
+RUN jupyter labextension install jupyterlab-ihaskell
+
+ENV PATH=/home/gitpod/.local/bin:$PATH 
